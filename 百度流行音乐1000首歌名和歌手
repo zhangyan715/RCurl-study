@@ -1,5 +1,7 @@
 #百度流行音乐1000首歌名和歌手
 #伪造报头
+library(XML)
+library(RCurl)
 myheader<-c(
   "User-Agent"="Mozilla/5.0(Windows;U;Windows NT 5.1;zh-CN;rv:1.9.1.6",
   "Accept"="text/htmal,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
@@ -8,6 +10,7 @@ myheader<-c(
   "Accept-Charset"="GB2312,utf-8;q=0.7,*;q=0.7"
 )
 temp <- getURL('http://music.baidu.com/tag/%E6%B5%81%E8%A1%8C',httpheader=myheader,encoding="utf-8")
+k <- htmlParse(temp)
 #获取每一页的数据
 getinformation <- function(x){
   temp <- getURL(x,httpheader=myheader,encoding="utf-8")  
